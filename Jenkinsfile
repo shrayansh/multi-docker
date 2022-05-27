@@ -15,6 +15,7 @@ pipeline {
 if (env.BRANCH_NAME.startsWith('PR')) {
     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'shrayansh-global-personal-git', usernameVariable: 'username', passwordVariable: 'pass']]) {
       def resp = httpRequest url: "https://github.com/shrayansh/multi-docker/pulls/${env.BRANCH_NAME.substring(3)}", customHeaders: [[name: 'Authorization', value: "token ${env.pass}"]]
+      println('Response: '+resp.content)
       def ttl = getTitle(resp)
       def itm = getItem(env.BRANCH_NAME)
       itm.setDisplayName("PR '${ttl}'")
