@@ -10,6 +10,7 @@ pipeline {
    stages {
    
    stage('setting build name'){
+       steps {
    script {
 if (env.BRANCH_NAME.startsWith('PR')) {
     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'shrayansh-global-personal-git', usernameVariable: 'username', passwordVariable: 'pass']]) {
@@ -19,7 +20,7 @@ if (env.BRANCH_NAME.startsWith('PR')) {
       itm.setDisplayName("PR '${ttl}'")
     }
   }
-
+   }
 }
 
     }
