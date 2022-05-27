@@ -19,6 +19,14 @@ if (env.BRANCH_NAME.startsWith('PR')) {
       itm.setDisplayName("PR '${ttl}'")
     }
   }
+
+}
+
+    }
+  }
+}
+
+
   @NonCPS
 def getItem(branchName) {
   Jenkins.instance.getItemByFullName("multi-docker/${branchName}")
@@ -30,14 +38,6 @@ def getTitle(json) {
     def jsonObject = slurper.parseText(json.content)
     jsonObject.title
 }
-}
-
-    }
-  }
-}
-
-
-
 
 
 
